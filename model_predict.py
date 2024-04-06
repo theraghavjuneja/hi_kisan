@@ -6,10 +6,10 @@ import os
 def load_pretrained_model():
     return load_model('model.h5')
 
-# Title of your Streamlit app
+
 st.title('Image Classifier')
 
-# File upload widget
+
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
 

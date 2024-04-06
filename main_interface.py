@@ -15,7 +15,20 @@ def main():
     st.title('HI-KISAN')
     st.sidebar.title('Language/भाषा')
     language = st.sidebar.selectbox("", ["English", "Hindi"])
-    screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Live Crop Prices by Government", "Screen 4", "Screen 5"])
+    
+    screens_dict = {
+     "मुख्य स्क्रीन":"Main Screen",
+     "फसल की पूर्वानुमान":"Crop Predictor",
+     "एआई के साथ चैट करें":"Chat with AI",
+     "सरकार द्वारा लाइव फसल के मूल्य":"Live Crop Prices by Government"   
+    }
+    if(language=="English"):    
+        screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Live Crop Prices by Government",])
+    if(language=="Hindi"):
+        screens = st.selectbox("Choose screens", list(screens_dict.keys()), index=0)
+        screens=screens_dict[screens]
+    
+
     if screens=="Main Screen":
         if language=="English":
             heading_statement = heading_statements()
@@ -55,14 +68,18 @@ def main():
 
         if "chat_session" not in st.session_state:
             st.session_state.chat_session = model.start_chat(history=[])
-
-        st.subheader("🤖 FarmHelper - ChatBot")
+        if language=="English":    
+            st.subheader("🤖 FarmHelper - ChatBot")
+        elif language=="Hindi":
+            st.subheader("🤖 फार्महेल्पर चैटबॉट")
 
         for message in st.session_state.chat_session.history:
             with st.chat_message(translate_role_for_streamlit(message.role)):
                 st.markdown(message.parts[0].text)
-
-        user_prompt = st.chat_input("Ask me about crops...")
+        if language=='English':
+            user_prompt = st.chat_input("Ask me about crops...")
+        elif language=='Hindi':
+            user_prompt = st.chat_input("आप मुझसे फसलों के बारे में पूछ सकते हैं")
 
         if user_prompt:
             # Check if the user prompt contains farming-related keywords
