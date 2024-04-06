@@ -13,4 +13,5 @@ def image_uploader():
     else:
         st.sidebar.success('Image uploaded succesfully')
         st.sidebar.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
-        st.sidebar.button("SUBMIT FOR PREDICTION")
+        if(st.sidebar.button("SUBMIT FOR PREDICTION")):
+            st.write("Hello")
