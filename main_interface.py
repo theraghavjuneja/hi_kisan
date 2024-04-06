@@ -1,6 +1,6 @@
 import streamlit as st
 import pyttsx3
-from return_statements import heading_statements, image_uploader
+from return_statements import heading_statements, image_uploader,h_heading
 import os
 def text_to_speech(text):
     engine = pyttsx3.init()
@@ -23,18 +23,22 @@ def main():
                     st.write(statement)
                 with col2:
                     st.button(f"Listen", key=f"speak_{i}", on_click=lambda text=statement: text_to_speech(text))     
+        elif language=="Hindi":
+            heading_state=h_heading()
+            for i in heading_state:
+                st.write(i)
         
     if screens=="Crop Predictor":
-        image_uploader()
+        if language=="English":
+            image_uploader("English")
+        if language=="Hindi":
+            image_uploader("Hindi")
+        
     if screens=="Chat with AI":
         from dotenv import load_dotenv
         import google.generativeai as gen_ai
 
         load_dotenv()
-        # st.set_page_config(
-        #     page_title="Chat with Gemini-Pro!",  
-        #     layout="centered",  
-        # )
 
         GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
