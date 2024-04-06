@@ -4,6 +4,8 @@ from return_statements import heading_statements,image_uploader
 
 def text_to_speech(text):
     engine = pyttsx3.init()
+    engine.setProperty('rate', 150)  
+    engine.setProperty('voice', 'hindi')  
     engine.say(text)
     engine.runAndWait()
 
