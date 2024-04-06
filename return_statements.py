@@ -2,9 +2,13 @@ import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from googletrans import Translator
 import os
 import json
-
+def translate_text(text, target_language):
+    translator = Translator()
+    translated_text = translator.translate(text, dest=target_language)
+    return translated_text.text
 with open("disease_mapping.json", "r") as f:
     mapping = json.load(f)
 
@@ -66,18 +70,22 @@ def image_uploader(language):
                 img_array = np.expand_dims(img_array, axis=0)
                 img_array /= 255.0
                 list_of_images = os.listdir('train')
+                
                 predictions = loaded_model.predict(img_array)
                 predicted_class_index = np.argmax(predictions)
                 im_name = list_of_images[predicted_class_index]
                 if "healthy" in im_name:
-                    st.write(f"मुझे लगता है कि यह {list_of_images[predicted_class_index]} की स्वस्थ छवि है")
+                    healthy=translate_text(list_of_images[predicted_class_index],"hi")
+                    st.write(f"मुझे लगता है कि यह {healthy} की स्वस्थ छवि है")
                     st.write(f"आपको ज्यादा चिंता करने की आवश्यकता नहीं है। आपकी फसल स्वस्थ है, आपने पहले ही अच्छा काम किया है")
                 else:
-                    st.write(f"मुझे लगता है कि यह {list_of_images[predicted_class_index].split('___')[0]} की प्रदूषित छवि है जिसे {list_of_images[predicted_class_index].split('___')[1]} के द्वारा प्रभावित किया गया है")
+                    translated_label = translate_text(list_of_images[predicted_class_index].split('___')[0], "hi")
+                    st.write(f"मुझे लगता है कि यह {translated_label} की प्रदूषित छवि है जिसे {list_of_images[predicted_class_index].split('___')[1]} के द्वारा प्रभावित किया गया है")
                     if im_name in mapping['diseases']:
                         associated_array = mapping['diseases'][im_name]
                         st.write("आप रोग के अधिक प्रकट होने से बचने के लिए निम्नलिखित कदम अपना सकते हैं:")
-                        for idx, step in enumerate(associated_array, start=1):
+                        translated_steps = [translate_text(step, "hi") for step in associated_array]
+                        for idx, step in enumerate(translated_steps, start=1):
                             st.write(f"{idx}.) {step}")
 
     
