@@ -1,6 +1,6 @@
 import streamlit as st
 import pyttsx3
-from return_statements import heading_statements
+from return_statements import heading_statements,image_uploader
 
 def text_to_speech(text):
     engine = pyttsx3.init()
@@ -20,6 +20,7 @@ def main():
                 st.write(statement)
             with col2:
                 st.button(f"Listen", key=f"speak_{i}", on_click=lambda text=statement: text_to_speech(text))
+        image_uploader()  
     elif language == 'Hindi':
         pass
 

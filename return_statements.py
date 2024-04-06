@@ -6,5 +6,11 @@ def heading_statements():
 def image_uploader():
     st.subheader("Upload diseased leaf image of your crop")
     uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
-    if uploaded_file is not None:
-        st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+    st.info("Make sure you upload a clear leaf image")
+    
+    if uploaded_file is None:
+        st.sidebar.warning("Status: Image not uploaded")
+    else:
+        st.sidebar.success('Image uploaded succesfully')
+        st.sidebar.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+        st.sidebar.button("SUBMIT FOR PREDICTION")
