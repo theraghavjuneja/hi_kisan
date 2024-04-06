@@ -37,6 +37,8 @@ if uploaded_file is not None:
         st.write(f"You dont need to worry much. You have already done great as your crop is healthy")
     else:
         st.write(f"I think that this is a diseased image of {list_of_images[predicted_class_index].split('___')[0]} which is effected by{list_of_images[predicted_class_index].split('___')[1]}")
+        if(st.button("SUGGESTION")):
+            
 
 else:
     st.write("Please upload an image.")
