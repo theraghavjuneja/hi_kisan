@@ -1,6 +1,8 @@
 import streamlit as st
 import pyttsx3
 from return_statements import heading_statements, image_uploader,h_heading
+import pandas as pd
+from streamlit_dynamic_filters import DynamicFilters
 import os
 def text_to_speech(text):
     engine = pyttsx3.init()
@@ -13,7 +15,7 @@ def main():
     st.title('HI-KISAN')
     st.sidebar.title('Language/भाषा')
     language = st.sidebar.selectbox("", ["English", "Hindi"])
-    screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Screen 3", "Screen 4", "Screen 5"])
+    screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Live Crop Prices by Government", "Screen 4", "Screen 5"])
     if screens=="Main Screen":
         if language=="English":
             heading_statement = heading_statements()
@@ -108,6 +110,17 @@ def main():
                     st.markdown(gemini_response.text)
             else:
                 st.error("Sorry, your question seems unrelated to farming.")
+    if screens=="Live Crop Prices by Government":
+        data = pd.read_csv("commodities_data.csv")
+        df = pd.DataFrame(data)
+
+        dynamic_filters = DynamicFilters(df, filters=['State', 'District', 'Market','Commodity'])
+
+
+        dynamic_filters.display_filters()
+
+
+        dynamic_filters.display_df()
 
 
     
