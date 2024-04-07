@@ -58,3 +58,55 @@ Create a new branch
 Make req changes
 Create a pull request
 
+## CANVA PPT(PITCH)
+
+[Link to PPT Presentation](https://www.canva.com/design/DAGBsbwVm0o/MY2XRl6qL1RhLRo_P_V-Ww/edit?utm_content=DAGBsbwVm0o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
+### TEAM
+## Team Information
+
+- **Team Name:** Elixir
+- **Team Members:**
+  - Raghav Juneja
+  - Shivansh Pande
+## Technologies Used
+
+| Category              | Technologies                                     |
+|-----------------------|--------------------------------------------------|
+| Programming Languages | Python                                           |
+| Deep Learning         | Keras, TensorFlow                                |
+| Web Framework         | Streamlit                                        |
+| Version Control       | Git                                              |
+| Collaboration         | GitHub                                           |
+| API Testing           | Postman                                          |
+| HTTP Library          | Requests                                         |
+| Streamlit Extras      | Streamlit Extras                                 |
+| Translation           | Google Translate                                 |
+| Text-to-Speech        | Text-to-Speech                                   |
+| Machine Learning Model| Sequential CNN model (98% train accuracy 94.5%valid accuracy)              |
+
+
+## Project Idea: HI KISAN - Empowering Farmers with Technology
+
+**Brief Description:**
+
+HI KISAN is a web application designed to revolutionize the agricultural landscape by leveraging cutting-edge technology to provide farmers with vital information and support. Developed by Team Elixir, HI KISAN aims to empower farmers by offering a comprehensive suite of features tailored to their needs.
+
+**Key Features:**
+
+- **Crop-Related Information:** HI KISAN provides farmers with detailed information on various crops, including cultivation techniques, disease identification, and remedies.
+  
+- **Language Selection:** Farmers can easily switch between languages, with support for both Hindi and English, ensuring accessibility to a wide user base.
+
+- **AI-Based Chat:** An interactive chatbot powered by deep learning technology allows farmers to seek real-time assistance and advice on agricultural queries.
+
+- **Crop Price Trends:** Access to current and historical crop price trends enables farmers to make informed decisions about selling their produce.
+
+- **Weather Forecasts:** HI KISAN delivers accurate weather forecasts, helping farmers plan their agricultural activities efficiently.
+
+**Mission:**
+
+Our mission with HI KISAN is to bridge the gap between traditional farming practices and modern technology, empowering farmers with the knowledge and tools they need to thrive in today's dynamic agricultural sector.
+
+
