@@ -27,13 +27,16 @@ Users can identify crop diseases and view remedies.
 Users can chat with an AI bot in either Hindi or English.
 
 ### Crop Price Trends
+![image](https://github.com/theraghavjuneja/hi_kisan/assets/142654162/83c3f5fa-8e8e-47f7-a809-8bf2de0d7284)
 
-![Crop Price Trends](https://github.com/theraghavjuneja/hi_kisan/assets/142654162/3d3526be-c986-4eb6-bc5a-8db6f38b58f0)
+
+
 
 Users can view current crop price trends by selecting state, district, or commodities.
 
 ### Weather Forecast
 
+![Crop Price Trends](https://github.com/theraghavjuneja/hi_kisan/assets/142654162/3d3526be-c986-4eb6-bc5a-8db6f38b58f0)
 Users can access weather information and forecasts displayed in plotly graphs.
 
 ## Usage
