@@ -53,7 +53,8 @@ def main():
      "मुख्य स्क्रीन":"Main Screen",
      "फसल की पूर्वानुमान":"Crop Predictor",
      "एआई के साथ चैट करें":"Chat with AI",
-     "सरकार द्वारा लाइव फसल के मूल्य":"Live Crop Prices by Government"   
+     "सरकार द्वारा लाइव फसल के मूल्य":"Live Crop Prices by Government" ,
+     "मौसम की जाँच करें":"Check Weather"  
     }
     if(language=="English"):    
         screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Live Crop Prices by Government","Check Weather"])
