@@ -108,5 +108,10 @@ HI KISAN is a web application designed to revolutionize the agricultural landsca
 **Mission:**
 
 Our mission with HI KISAN is to bridge the gap between traditional farming practices and modern technology, empowering farmers with the knowledge and tools they need to thrive in today's dynamic agricultural sector.
+### Postman API Testing
+
+![Postman API Testing](https://github.com/theraghavjuneja/hi_kisan/assets/142654162/de41f4b9-ce1e-4a36-9dbc-8db53d851ec2)
+
+
 
 
