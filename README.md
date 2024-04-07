@@ -40,13 +40,21 @@ Users can view current crop price trends by selecting state, district, or commod
 Users can access weather information and forecasts displayed in plotly graphs.
 
 ## Usage
+You can follow these steps to run this web application:
+<br>
+You can clone this repo remotely to run the web app.
+<br>
+Start by making a .env file having gemini and weather api
+<br> Now, pip install streamlit,googletrans,streamlit-extras .
+<br>
+You may have to install more dependencies depending on ur building
 
-Provide instructions on how to use the web application.
 
 ## Contributing
+Fork this repo.
+<br>
+Create a new branch
+<br>
+Make req changes
+Create a pull request
 
-Explain how others can contribute to the project.
-
-## License
-
-Include information about the project's license.
