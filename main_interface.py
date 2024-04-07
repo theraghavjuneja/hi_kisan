@@ -4,6 +4,39 @@ from return_statements import heading_statements, image_uploader,h_heading
 import pandas as pd
 from streamlit_dynamic_filters import DynamicFilters
 import os
+from dotenv import load_dotenv
+import requests
+from datetime import datetime
+import pandas as pd
+import plotly.graph_objs as go
+import base64
+load_dotenv()
+API_KEY=os.getenv("OPEN_WEATHER_API")
+def fetch_data_from_api(city):
+    api_url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appId=9fbad4ea130c7759ec312350195588c1'
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        st.error(f"Failed to fetch data from API. Status code: {response.status_code}")
+        return None
+def timestamp_to_datetime(timestamp):
+    return datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+def display_tabular(data):
+    rows = []
+    humidity_data = []
+    temperature_data = []
+    for item in data['list']:
+        timestamp = timestamp_to_datetime(item['dt'])
+        temperature = item['main']['temp']
+        humidity = item['main'].get('humidity', '-')
+        weather_description = item['weather'][0]['description']
+        rows.append([timestamp, temperature, humidity, weather_description])
+        humidity_data.append((timestamp, humidity))
+        temperature_data.append((timestamp, temperature))
+    df = pd.DataFrame(rows, columns=['Date and Time', 'Temperature (°K)', 'Humidity (%)', 'Weather Description'])
+    return df, humidity_data, temperature_data
+
 def text_to_speech(text):
     engine = pyttsx3.init()
     engine.setProperty('rate', 150)  
@@ -23,7 +56,7 @@ def main():
      "सरकार द्वारा लाइव फसल के मूल्य":"Live Crop Prices by Government"   
     }
     if(language=="English"):    
-        screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Live Crop Prices by Government",])
+        screens = st.selectbox("Choose screens", ["Main Screen","Crop Predictor", "Chat with AI", "Live Crop Prices by Government","Check Weather"])
     if(language=="Hindi"):
         screens = st.selectbox("Choose screens", list(screens_dict.keys()), index=0)
         screens=screens_dict[screens]
@@ -138,6 +171,34 @@ def main():
 
 
         dynamic_filters.display_df()
+    if screens=="Check Weather":
+        st.title("Weather Data")
+        city = st.text_input('Enter city name:', 'New York')
+        data = fetch_data_from_api(city)
+
+        if data:
+            df, humidity_data, temperature_data = display_tabular(data)
+            st.subheader('Weather Data:')
+            st.write(df)
+            
+            st.subheader('Humidity Variation')
+            fig_humidity = go.Figure()
+            fig_humidity.add_trace(go.Scatter(x=[item[0] for item in humidity_data], y=[item[1] for item in humidity_data], mode='lines', name='Humidity (%)'))
+            st.plotly_chart(fig_humidity)
+
+            st.subheader('Temperature Variation')
+            fig_temperature = go.Figure()
+            fig_temperature.add_trace(go.Scatter(x=[item[0] for item in temperature_data], y=[item[1] for item in temperature_data], mode='lines', name='Temperature (°K)'))
+            st.plotly_chart(fig_temperature)
+
+            st.subheader('Notes')
+            notes = st.text_area("Write your notes here:")
+            
+            # Download button
+            csv = df.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()
+            href = f'<a href="data:file/csv;base64,{b64}" download="weather_data.csv">Download weather data</a>'
+            st.markdown(href, unsafe_allow_html=True)
 
 
     

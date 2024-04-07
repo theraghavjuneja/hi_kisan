@@ -1,7 +1,10 @@
 import requests
 import json
 from datetime import datetime
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
+API_KEY = os.getenv("OPEN_WEATHER_API")
 
 def fetch_data_from_api(api_url):
     response = requests.get(api_url)
@@ -30,7 +33,7 @@ def display_tabular(data):
         print(f"{timestamp}\t{temperature:.2f}\t\t\t{humidity}\t\t{weather_description}")
 
 # Example usage
-api_url = 'http://api.openweathermap.org/data/2.5/forecast?q=New York&appId=9fbad4ea130c7759ec312350195588c1'
+api_url = f'http://api.openweathermap.org/data/2.5/forecast?q=New York&appId={API_KEY}'
 data = fetch_data_from_api(api_url)
 if data:
     display_tabular(data)
